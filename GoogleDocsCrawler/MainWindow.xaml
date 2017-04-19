@@ -17,19 +17,19 @@
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0" Grid.Column="0">
             <Label DockPanel.Dock="Top">1. Download FileIDs</Label>
-            <Label DockPanel.Dock="Bottom" FontStyle="Italic">* Double Click to download</Label>
-            <DataGrid x:Name="dgDocs" CanUserAddRows="True" AutoGenerateColumns="False">
+            <Label DockPanel.Dock="Bottom" FontStyle="Italic">* Double Click to view txt</Label>
+            <DataGrid x:Name="dgDocs" CanUserAddRows="True" AutoGenerateColumns="False" MouseDoubleClick="dgDocs_MouseDoubleClick" SelectionChanged="dgDocs_SelectionChanged" SelectionMode="Single">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Width="6*" Header="File ID" Binding="{Binding fileId}"/>
-                    <DataGridCheckBoxColumn Width="2*" Header="downloaded" Binding="{Binding isDownloaded}" IsReadOnly="True"/>
-                    <DataGridCheckBoxColumn Width="2*" Header="parsed" Binding="{Binding isParsed}" IsReadOnly="True"/>
+                    <DataGridTextColumn Width="6*" Header="File ID" Binding="{Binding FileId, Mode=TwoWay}"/>
+                    <DataGridCheckBoxColumn Width="2*" Header="downloaded" Binding="{Binding IsDownloaded, Mode=TwoWay}" IsReadOnly="True"/>
+                    <DataGridCheckBoxColumn Width="2*" Header="parsed" Binding="{Binding IsParsed, Mode=TwoWay}" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
         <DockPanel Grid.Row="0" Grid.Column="1">
-            <Label DockPanel.Dock="Top">2. downloaded HTML</Label>
+            <Label DockPanel.Dock="Top">2. downloaded txt</Label>
             <ScrollViewer DockPanel.Dock="Top">
-                <TextBox x:Name="txtHtml" IsReadOnly="True"></TextBox>
+                <TextBox x:Name="txt" IsReadOnly="True"></TextBox>
             </ScrollViewer>
         </DockPanel>
         <DockPanel Grid.Row="1" Grid.Column="0">
@@ -42,7 +42,7 @@
         <DockPanel Grid.Row="1" Grid.Column="1">
             <Label DockPanel.Dock="Top">4. parsed JSON</Label>
             <ScrollViewer DockPanel.Dock="Top">
-                <TextBox x:Name="txtJson" IsReadOnly="True"></TextBox>
+                <TextBox x:Name="json" IsReadOnly="True"></TextBox>
             </ScrollViewer>
         </DockPanel>
     </Grid>

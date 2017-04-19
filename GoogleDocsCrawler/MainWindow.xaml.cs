@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,43 @@ namespace GoogleDocsCrawler
     /// </summary>
     public partial class MainWindow : Window
     {
+        ObservableCollection<Doc> docs = new ObservableCollection<Doc>();
+
         public MainWindow()
         {
             InitializeComponent();
+            this.dgDocs.ItemsSource = docs;
+        }
+
+        private void dgDocs_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var item = ((FrameworkElement)e.OriginalSource).DataContext as Doc;
+            if (item != null)
+            {
+                /*if (item.FileId != "" && item.FileId != null && item.IsDownloaded == false)
+                {
+                    item.Download();
+                }*/
+                if(item.IsDownloaded == true)
+                {
+                    txt.Text = item.Txt;
+                }
+            }
+        }
+
+        private void dgDocs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.AddedItems.Count == 1)
+            {
+                var item = e.AddedItems[0] as Doc;
+                if (item != null)
+                {
+                    if (item.IsDownloaded == true)
+                    {
+                        txt.Text = item.Txt;
+                    }
+                }
+            }
         }
     }
 }
