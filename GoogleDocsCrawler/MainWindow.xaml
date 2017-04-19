@@ -1,0 +1,49 @@
+﻿<Window x:Class="GoogleDocsCrawler.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GoogleDocsCrawler"
+        mc:Ignorable="d"
+        Title="Google Docs Crawler" Height="600" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0" Grid.Column="0">
+            <Label DockPanel.Dock="Top">1. Download FileIDs</Label>
+            <Label DockPanel.Dock="Bottom" FontStyle="Italic">* Double Click to download</Label>
+            <DataGrid x:Name="dgDocs" CanUserAddRows="True" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="6*" Header="File ID" Binding="{Binding fileId}"/>
+                    <DataGridCheckBoxColumn Width="2*" Header="downloaded" Binding="{Binding isDownloaded}" IsReadOnly="True"/>
+                    <DataGridCheckBoxColumn Width="2*" Header="parsed" Binding="{Binding isParsed}" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
+        <DockPanel Grid.Row="0" Grid.Column="1">
+            <Label DockPanel.Dock="Top">2. downloaded HTML</Label>
+            <ScrollViewer DockPanel.Dock="Top">
+                <TextBox x:Name="txtHtml" IsReadOnly="True"></TextBox>
+            </ScrollViewer>
+        </DockPanel>
+        <DockPanel Grid.Row="1" Grid.Column="0">
+            <Label DockPanel.Dock="Top">3. parsing Rule</Label>
+            <Button DockPanel.Dock="Bottom">Parse</Button>
+            <ScrollViewer DockPanel.Dock="Top">
+                <TextBox x:Name="txtParseRule" IsReadOnly="True"></TextBox>
+            </ScrollViewer>
+        </DockPanel>
+        <DockPanel Grid.Row="1" Grid.Column="1">
+            <Label DockPanel.Dock="Top">4. parsed JSON</Label>
+            <ScrollViewer DockPanel.Dock="Top">
+                <TextBox x:Name="txtJson" IsReadOnly="True"></TextBox>
+            </ScrollViewer>
+        </DockPanel>
+    </Grid>
+</Window>
